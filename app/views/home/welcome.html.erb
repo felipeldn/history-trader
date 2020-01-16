@@ -1,0 +1,21 @@
+<br>
+<h2> Trade historical treasures or simply have a browse and share knowledge!</h2>
+
+
+<br>
+<h2> Create A New Account </h2>
+<%= form_for @user do |f| %>
+<%= f.label :username %>
+<%= f.text_field :username %> <br>
+<br>
+<%= f.label :password %>
+<%= f.password_field :password %> <br>
+<br>
+<%= f.label :password_confirmation %>
+<%= f.password_field :password_confirmation %> <br>
+<br>
+<%= f.submit %>
+<br>
+<% end %>
+<br>
+<h2> <%= link_to "Already have an account? Login", login_path %></h2>

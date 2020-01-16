@@ -1,0 +1,16 @@
+<h2> Create A New Account </h2>
+
+<%= form_for @user do |f| %>
+<%= f.label :username %>
+<%= f.text_field :username %> <br>
+<br>
+<%= f.label :password %>
+<%= f.password_field :password %> <br>
+<br>
+<%= f.label :password_confirmation %>
+<%= f.password_field :password_confirmation %> <br>
+<br>
+<%= f.submit %>
+<% end %>
+<br>
+<%= link_to "Already have an account? Sign in", login_path %>

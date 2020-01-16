@@ -1,0 +1,13 @@
+<%= form_for @post do |f| %>
+    <%= f.label :subject %>
+    <%= f.text_field :subject %><br>
+    <br>
+    <%= f.label :img_url %>
+    <%= f.text_field :img_url %><br>
+    <br>
+    <%= f.label :body %>
+    <%= f.text_field :body %><br>
+    <br>
+    <%= f.submit %>
+<% end %>
+<%= link_to 'Delete post', @post, { method: 'delete', data: {confirm: 'Are you sure?'}} %>

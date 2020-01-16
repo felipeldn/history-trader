@@ -1,0 +1,26 @@
+<h2> Create A New Post </h2>
+
+<% if @post.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@post.errors.count, "error") %></h2>
+    <ul>
+        <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @post do |f| %>
+  
+    <%= f.label :subject %>
+    <%= f.text_field :subject %><br>
+    <br>
+    <%= f.label :img_url %>
+    <%= f.text_field :img_url %><br>
+    <br>
+    <%= f.label :body %>
+    <%= f.text_field :body %><br>
+    <br>
+    <%= f.submit %>
+<% end %>

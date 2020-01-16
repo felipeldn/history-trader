@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HistoryTrader</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <nav>
+  <ul class="nav">
+    <% if logged_in? %>
+  <li class="nav-item">
+    <p> <%= "#{@current_user.username} is logged in." %> <%= "Not #{@current_user.username}?"%> <%= link_to "Log out", logout_path, class:"nav-link active" %> </p>
+  <li class="nav-item">
+    <%= link_to "Homepage", feed_path, class:"nav-link active"%>
+  <li class="nav-item">
+     <%= link_to "My Posts", posts_path, class:"nav-link active"%>
+  </li>
+  <li class="nav-item">
+    <%= link_to "My Profile", user_path(session[:user_id]), class:"nav-link active"%>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Create a Post", new_post_path, class:"nav-link active"%>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Log out", logout_path, class:"nav-link active" %>
+    <% else %>
+    <%= link_to "Sign up", signup_path, class:"nav-link active" %>
+    </li>
+    <%= link_to "Log in", login_path, class:"nav-link active"%>
+    <%end%>
+</ul>
+    </nav>
+  <% if flash[:errors] %>
+    <ul class="errors">
+      <h2>Oops there's been an error</h2>
+      <% flash[:errors].each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <% if flash[:notices] %>
+    <ul class="notices">
+      <% flash[:notices].each do |notice| %>
+        <li><%= notice %></li>
+      <% end %>
+    </ul>
+  <% end %>
+    <%= yield %>
+  </body>
+</html>
