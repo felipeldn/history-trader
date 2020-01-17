@@ -37,7 +37,7 @@ class UsersController < ApplicationController
         @current_user.destroy
         session.destroy
         flash[:notice] = "User account successfully deleted"
-        redirect_to feed_path
+        redirect_to welcome_path
     end
 
 
