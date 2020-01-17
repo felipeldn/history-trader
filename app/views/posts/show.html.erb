@@ -2,7 +2,6 @@
     <div class="col-xs-1" align="center">
     <h2> <%= @post.subject %></h2>
     <h3> By <%= link_to @post.user_name, user_path(@post[:user_id]) %> </h3>
-    br>
     <div>
     <%= @post.img_url %>
     </div>
