@@ -16,8 +16,10 @@ class SessionsController < ApplicationController
 
     def destroy
         session.delete(:user_id)
-        redirect_to signup_path
-        # redirect_back(fallback_location: feed_path)
+        redirect_to feed_path
+        # session.delete(:user_id)
+        # # redirect_to signup_path
+        # redirect_back(fallback_location: signup_path)
     end
     
 end

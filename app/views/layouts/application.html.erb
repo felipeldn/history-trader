@@ -16,6 +16,8 @@
   <li class="nav-item">
     <p> <%= "#{@current_user.username} is logged in." %> <%= "Not #{@current_user.username}?"%> <%= link_to "Log out", logout_path, class:"nav-link active" %> </p>
   <li class="nav-item">
+    <%= link_to "Inbox", conversations_path, class:"nav-link active" %>
+  <li class="nav-item">
     <%= link_to "Homepage", feed_path, class:"nav-link active"%>
   <li class="nav-item">
      <%= link_to "My Posts", posts_path, class:"nav-link active"%>

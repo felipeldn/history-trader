@@ -19,10 +19,32 @@ class UsersController < ApplicationController
         end
     end
 
+    def edit
+        @user = User.find(session[:user_id])
+    end
+
+    def update
+        @user = User.find(session[:user_id])
+        if @user.update_attributes(user_params)
+            redirect_to myprofile_path
+            flash[:notice] = "User account successfully updated"
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        @current_user.destroy
+        session.destroy
+        flash[:notice] = "User account successfully deleted"
+        redirect_to feed_path
+    end
+
+
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :password_confirmation)
+        params.require(:user).permit(:username, :first_name, :last_name, :email_address, :password, :password_confirmation)
     end
 
 end

@@ -1,5 +1,2 @@
-<%= link_to comment.user.username, user_path(comment[:user_id]) %>
+<%= link_to comment.user_name, user_path(comment[:user_id]) %> - <b><%= comment.body %></b> - <i><%= time_ago_in_words(comment.created_at) %></i>
 <br>
-<h4><%= comment.body %></h4>
-<br>
-<%= time_ago_in_words(comment.created_at) %>

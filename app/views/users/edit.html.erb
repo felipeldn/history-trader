@@ -1,7 +1,7 @@
-<h2> Create A New Account </h2>
+<h1>Edit User Account</h1>
 
 <%= form_for @user do |f| %>
-<p>
+    <p>
     <%= f.label :username %>:<br/>
     <%= f.text_field :username %> 
 </p>
@@ -28,5 +28,5 @@
     <%= f.submit %>
 </p>
 <% end %>
-<br>
-<%= link_to "Already have an account? Sign in", login_path %>
+
+<%= link_to 'Delete user account', @user, { method: 'delete', data: {confirm: 'Are you sure?'}} %>

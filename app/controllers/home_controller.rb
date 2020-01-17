@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
-    def welcome
-        @user = User.new   
+    def myprofile
+        @user = User.find(session[:user_id])   
     end
 
     def feed
