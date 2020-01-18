@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   get '/', to: 'home#welcome', as: 'welcome'
   get '/feed', to: 'home#feed', as: 'feed'
-  get '/myprofile', to: 'home#myprofile', as: 'myprofile'
+  get '/myprofile', to: 'users#show', as: 'myprofile'
   get '/signup', to: 'users#new', as: :signup
   get '/login', to: 'sessions#new', as: :login
   post 'login', to: 'sessions#create'

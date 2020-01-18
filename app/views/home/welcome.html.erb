@@ -1,5 +1,21 @@
-<br>
+<% if logged_in? %>
+    <div class="col-xs-1" align="center">
+    <h2> Home feed. Check out all posts below! <h2>
+
+    <ul>
+        <% @current_user.posts.each do |post| %>
+  
+        <%= link_to post.subject, post %> 
+    
+        <br>
+        <% end %>
+<% else %>
+</ul>
+</div>
 <h2> Trade historical treasures or simply have a browse and share knowledge!</h2>
+
 <br>
 <h2> <%= link_to "Create an account", signup_path %> </h2>
-<h2> <%= link_to "Already have an account? Login", login_path %></h2>
+<h2> Already have an account? <%= link_to "Login", login_path %></h2>
+
+<% end %>

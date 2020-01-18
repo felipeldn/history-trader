@@ -1,9 +1,14 @@
 <% if logged_in? %>
     <div class="col-xs-1" align="center">
     <h2> <%= @post.subject %></h2>
-    <h3> By <%= link_to @post.user_name, user_path(@post[:user_id]) %> </h3>
+    <p><%if !!@current_user.avatar%>
+        <%=image_tag(@current_user.avatar, style: "width:20%", style: "height:20%") %>
+        <% end %><h3> By <%= link_to @post.user_name, user_path(@post[:user_id]) %> </h3></p>
     <div>
-    <%= @post.img_url %>
+    <%= link_to image_tag(@post.image, style: "width:100%", style: "height:100%"), posts_path(@post) %>
+    </div>
+    <div>
+    <%= @post.caption %>
     </div>
     <br>
     <div>
@@ -34,7 +39,7 @@
     <h3> By <%= link_to @post.user_name, user_path(@post[:user_id]) %> </h3>
     br>
     <div>
-    <%= @post.img_url %>
+    <%= @post.caption %>
     </div>
     <br>
     <div>
