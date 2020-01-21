@@ -4,6 +4,7 @@ class User < ApplicationRecord
     has_one_attached :avatar
     has_secure_password
     acts_as_messageable
+    before_create :set_default_avatar
 
     validates :first_name, length: {minimum: 2, maximum: 20}
     validates :last_name, length: {minimum: 2, maximum: 20}
@@ -12,8 +13,16 @@ class User < ApplicationRecord
     validates :username, uniqueness: {message: "already exists. Please choose another name."}, length: {minimum: 5, maximum: 20}  
     validates :password, length: {minimum: 7, maximum: 30}
     validates :avatar, blob: { content_type: :image }
-  
+
+    
     def mailboxer_email(object)
         return self.email_address
     end
+
+    def set_default_avatar       
+        if !self.avatar
+            self.avatar = image_path('images/default-avatar.png')
+        end
+    end
+
 end

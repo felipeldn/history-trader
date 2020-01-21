@@ -40,7 +40,6 @@ class UsersController < ApplicationController
         redirect_to welcome_path
     end
 
-
     private
 
     def user_params

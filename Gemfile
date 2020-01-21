@@ -58,3 +58,4 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'mailboxer', github: 'mailboxer/mailboxer'
 gem 'activestorage-validator'
+gem 'omniauth-github'

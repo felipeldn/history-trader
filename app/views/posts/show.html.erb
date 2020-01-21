@@ -1,9 +1,10 @@
 <% if logged_in? %>
     <div class="col-xs-1" align="center">
     <h2> <%= @post.subject %></h2>
-    <p><%if !!@current_user.avatar%>
-        <%=image_tag(@current_user.avatar, style: "width:20%", style: "height:20%") %>
-        <% end %><h3> By <%= link_to @post.user_name, user_path(@post[:user_id]) %> </h3></p>
+        <%if @post.user.avatar%>
+            <%=image_tag(@post.user.avatar, style: "width:20%", style: "height:20%") %>
+        <% end %>
+        <h3> By <%= link_to @post.user_name, user_path(@post[:user_id]) %> </h3>
     <div>
     <%= link_to image_tag(@post.image, style: "width:100%", style: "height:100%"), posts_path(@post) %>
     </div>
@@ -33,33 +34,7 @@
             <%= render "comments/form" %>
         <% end %>
     <%="Start a "%><%= link_to "conversation", new_conversation_path(@post[:user_id])%><%=" if you are interested in trading"%>    
-<% else %>
-    <div class="col-xs-1" align="center">
-    <h2> <%= @post.subject %></h2>
-    <h3> By <%= link_to @post.user_name, user_path(@post[:user_id]) %> </h3>
-    br>
-    <div>
-    <%= @post.caption %>
-    </div>
-    <br>
-    <div>
-    <%= @post.body %>
-    </div>
-    <br>
-        <% if %>
-            <% @post.comments.count < 1 %>
-            <h2> No comments on this post </h2>
-            <h3> <%= link_to "Sign in", login_path %> or <%= link_to "create an account", signup_path %> to leave a comment or send a private message</h3>
-        <% elsif %>
-            <% @post.comments.count < 2 %>
-            <h2><%= @post.comments.count %> Comment</h2>
-            <%= render @post.comments %>
-            <h3> <%= link_to "Sign in", login_path %> or <%= link_to "create an account", signup_path %> to leave a comment or send a private message</h3>
-        <% else %>
-            <h2> <%= @post.comments.count %> Comments</h2>
-            <%= render @post.comments %>
-            <h3> <%= link_to "Sign in", login_path %> or <%= link_to "create an account", signup_path %> to leave a comment or send a private message</h3>
-        <% end %>
+
+
+
 <% end %>
-
-

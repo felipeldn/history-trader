@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
     before_action :set_current_user
 
     helper_method :logged_in?
+    helper_method :check_avatar
 
     def set_current_user
         @current_user = session[:user_id] ? User.find(session[:user_id]) : nil
@@ -18,5 +19,12 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def check_avatar(user)
+        if @current_user.avatar.nil?
+          return 'images/default-avatar.png'
+       else
+          return @current_user.avatar
+       end
+    end
     
 end

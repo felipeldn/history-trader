@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
 
-    def myprofile
-        @user = User.find(session[:user_id])   
+    def welcome
+        @posts = Post.all
     end
-
+    
     def feed
         @posts = Post.all.order("created_at DESC")
     end

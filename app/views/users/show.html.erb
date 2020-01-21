@@ -1,11 +1,9 @@
-<h1>Your Profile</h1>
+<h1>My Profile</h1>
 <br>
 <p> Username: <%= @user.username%></p>
 <br>
 <p> Name: <%= @user.full_name%></p>
-<%if !!@user.avatar%>
-<p> <%=image_tag(@user.avatar, style: "width:10%", style: "height:10%") %> </p>
-<% end %>
+<%= image_tag(check_avatar(@user)) %>
 <br>
 <p> Number of posts: <%=@user.posts.count%></p>
 <br>

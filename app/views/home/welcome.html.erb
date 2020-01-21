@@ -3,7 +3,7 @@
     <h2> Home feed. Check out all posts below! <h2>
 
     <ul>
-        <% @current_user.posts.each do |post| %>
+        <% @posts.each do |post| %>
   
         <%= link_to post.subject, post %> 
     
