@@ -3,7 +3,11 @@ class PostsController < ApplicationController
     before_action :authorize_user, only: [:edit, :update, :destroy, :new, :create]
 
     def index
-        @posts = Post.all.order("created_at DESC")
+        @posts = Post.all
+    end
+
+    def search
+       @posts = Post.where("subject LIKE ?", "%" + params[:q] + "%") 
     end
 
     def show
@@ -19,7 +23,7 @@ class PostsController < ApplicationController
         @post.user_id = @current_user.id
         @post.save
         if @post.save
-          flash[:notice] = "Post successfully created"  
+          flash[:success] = "Post successfully created."  
           redirect_to post_path(@post)
         else
           render :new
@@ -35,7 +39,7 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
         if @post.update_attributes(post_params)
             redirect_to posts_path(@post)
-            flash[:notice] = "Post successfully updated"
+            flash[:success] = "Post successfully updated."
         else
             render :edit
         end

@@ -12,9 +12,10 @@ class UsersController < ApplicationController
         @user = User.create(user_params)
         if @user.valid?
             session[:user_id] = @user.id
-            redirect_to feed_path
+            flash[:success] = "User account successfully created."
+            redirect_to welcome_path
         else
-            flash[:errors] = @user.errors.full_messages
+            flash[:danger] = @user.errors.full_messages
             redirect_to new_user_path
         end
     end
@@ -26,8 +27,8 @@ class UsersController < ApplicationController
     def update
         @user = User.find(session[:user_id])
         if @user.update_attributes(user_params)
-            redirect_to myprofile_path
-            flash[:notice] = "User account successfully updated"
+            redirect_to user_path(@user)
+            flash[:success] = "User account successfully updated."
         else
             render :edit
         end
@@ -36,14 +37,14 @@ class UsersController < ApplicationController
     def destroy
         @current_user.destroy
         session.destroy
-        flash[:notice] = "User account successfully deleted"
+        flash[:danger] = "User account successfully deleted."
         redirect_to welcome_path
     end
 
     private
 
     def user_params
-        params.require(:user).permit(:username, :first_name, :last_name, :avatar, :email_address, :password, :password_confirmation)
+        params.require(:user).permit(:username, :remove_avatar, :first_name, :last_name, :avatar, :email_address, :password, :password_confirmation)
     end
 
 end

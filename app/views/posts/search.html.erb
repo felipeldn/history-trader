@@ -1,0 +1,26 @@
+<h1 "col-xs-1" align="center">Search Results:</h1>
+
+<% if  %>
+    <%@posts.count > 0%>
+
+    <div class="row">
+    <% @posts.each do |post| %>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <%= image_tag(post.image, style: "height: 400px", style: "width:100%", display: "block;") %>
+                        <div class="caption">
+                            <h3 id="thumbnail-label"><%= link_to post.subject, post %></h3>
+                            <p>by <%= link_to post.user.username, user_path(post[:user_id]) %></p>
+                            <p>Posted <%= time_ago_in_words(post.created_at) %> ago</p>
+                        </div>
+                    </div>
+                </div>
+     <% end %>  
+    
+<% else %>
+
+    <h4 "col-xs-1" align="center">There aren't any results based on your search.</h4>
+
+<% end %>
+
+</div>

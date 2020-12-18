@@ -1,21 +1,53 @@
 <% if logged_in? %>
-    <div class="col-xs-1" align="center">
-    <h2> Home feed. Check out all posts below! <h2>
 
-    <ul>
-        <% @posts.each do |post| %>
-  
-        <%= link_to post.subject, post %> 
-    
-        <br>
-        <% end %>
-<% else %>
-</ul>
+    <div class="col-xs-1" align="center">
+        <a href="/"> <h2 > <%= image_tag('feed-logo.png', width: '150') %> <h2> </a>
+    </div>
+
+
+<br/>
+<div class="row">
+  <% @posts.each do |post| %>
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <%= image_tag(post.image, style: "height: 400px", style: "width:100%", display: "block;") %>
+                    <div class="caption">
+                        <h3 id="thumbnail-label"><%= link_to post.subject, post %></h3>
+                        <p>by <%= link_to post.user.username, user_path(post[:user_id]) %></p>
+                        <p>Posted <%= time_ago_in_words(post.created_at) %> ago</p>
+                    </div>
+                </div>
+            </div>
+    <% end %>    
 </div>
+
+<% else %>
+
 <h2> Trade historical treasures or simply have a browse and share knowledge!</h2>
 
 <br>
-<h2> <%= link_to "Create an account", signup_path %> </h2>
-<h2> Already have an account? <%= link_to "Login", login_path %></h2>
+<h6> <%= link_to "Create an account", signup_path %> </h6>
+<h6> Already have an account? <%= link_to "Login", login_path %></h6>
+<br>
 
+<div class="col-xs-1" align="center">
+        <a href="/"> <h2 > <%= image_tag('feed-logo.png', width: '150') %> <h2> </a>
+</div>
+
+
+<br/>
+<div class="row">
+  <% @posts.each do |post| %>
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <%= image_tag(post.image, style: "height: 400px", style: "width:100%", display: "block;") %>
+                    <div class="caption">
+                        <h3 id="thumbnail-label"><%= link_to post.subject, post %></h3>
+                        <p>by <%= link_to post.user.username, user_path(post[:user_id]) %></p>
+                        <p>Posted <%= time_ago_in_words(post.created_at) %> ago</p>
+                    </div>
+                </div>
+            </div>
+    <% end %>    
+</div>
 <% end %>

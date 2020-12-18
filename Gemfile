@@ -58,4 +58,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'mailboxer', github: 'mailboxer/mailboxer'
 gem 'activestorage-validator'
-gem 'omniauth-github'
+gem 'omniauth'
+gem 'bootstrap', '~> 4.3.1'
+gem "bootstrap_form"
+gem 'omniauth-facebook'
+gem 'chosen-rails'
+

@@ -1,2 +1,22 @@
 //= link_tree ../images
 //= link_directory ../stylesheets .css
+// jQuery ->
+//     $('body').prepend('<div id="fb-root"></div>')
+
+//     $.ajax
+//         url: '//connect.facebook.net/en_US/all.js'
+//         dataType: 'script'
+//         cache: true
+
+// window.fbAsyncInit = ->
+//     FB.init(appId: '571534276763605', cookie: true)
+
+//     $('#sign_in').click (e) ->
+//         e.preventDefault()
+//         FB.login (response) ->
+//             window.location = 'users/auth/facebook/callback' if response.authResponse
+
+//     $('#sign_out').click (e) ->
+//         FB.getLoginStatus (response) ->
+//             FB.logout() if response.authResponse
+//         true

@@ -2,16 +2,20 @@
 
 <%= form_tag conversations_path, method: :post do %>
     <div> 
+    <h6>
+        Choose recipient:
+    </h6>
         <%= select_tag :user_id, options_from_collection_for_select(@recipients, :id, :username) %>
     </div>
-
+    <br/>
+    
     <div>
         <%= text_field_tag :subject, nil,  placeholder: "Subject" %>
     </div>
-
+    <br/>
     <div>
         <%= text_area_tag :body, nil, placeholder: "Start your conversation" %>
     </div>
-
-    <%= submit_tag %>
+    <br/>
+    <%= submit_tag "Send Message", class: "btn btn-success"%>
 <% end %>

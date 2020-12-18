@@ -1,2 +1,6 @@
-<%= link_to comment.user_name, user_path(comment[:user_id]) %> - <b><%= comment.body %></b> - <i><%= time_ago_in_words(comment.created_at) %></i>
+<%= link_to comment.user.username, user_path(comment[:user_id]) %> - <b><%= comment.body %></b> - <i><%= time_ago_in_words(comment.created_at) %></i>
+
+<% if comment.user.id == session[:user_id] %>
+    <%= link_to 'Delete Comment',  post_comment_path(comment.post, comment),   method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
 <br>

@@ -1,9 +1,10 @@
-<h3> <%= @conversation.subject %> </h3>
-
+<h2> "<%= @conversation.subject %>" with <%= link_to @recipient.username, user_path(@recipient) %></h2>
+<br/>
+<br/>
 <% @conversation.receipts_for(@current_user).each do |receipt| %>
     <div>
-        <div> <%= receipt.message.sender.full_name %> commented:</div>
-        <p><%= receipt.message.body %></p>
+        <div> <%= link_to receipt.message.sender.username, user_path(receipt.message.sender) %> <%= time_ago_in_words(receipt.message.created_at) %> ago:</div>
+        <strong><%= receipt.message.body %></strong>
     </div>
 <% end %>
 
@@ -11,5 +12,12 @@
     <div>
         <%= text_area_tag :body %>
     </div>
+    <br/>
 <%= submit_tag %>
+<br>
+<br/>
+<br/>
+<%= link_to 'Delete conversation', conversation_path(@conversation), class: 'btn btn-xs btn-danger', method: :delete,
+                  data: {confirm: 'Are you sure?'} %>
+
 <% end %>

@@ -1,14 +1,82 @@
-<h1>My Profile</h1>
+<% if  %>
+    <% @user.id == session[:user_id] %>
+    <div align="center"> 
+        <h2> My Profile </h2>
+    <br>
+
+    <div align="center"> 
+    <div class="thumbnail">
+        <%= image_tag(check_avatar(@user), class:"avatar") %><br/><br/>
+    </div>
+
+<p> Name: <%= @user.full_name %></p>
 <br>
-<p> Username: <%= @user.username%></p>
+<p> Username: <%= @user.username%> </p>
 <br>
-<p> Name: <%= @user.full_name%></p>
-<%= image_tag(check_avatar(@user)) %>
+<p> Email address: <%= @user.email_address%></p>
 <br>
 <p> Number of posts: <%=@user.posts.count%></p>
 <br>
-<p> <ul><% @user.posts.each do |post| %> 
-                    <li> <%= link_to post.subject, post %> </li></p>
-                    <% end %></ul></p>
 
-<%=link_to "Edit User Account", edit_user_path(@user)%>
+<% if  %>
+    <%@user.posts.count > 0%>
+
+<p>My posts:</p>
+
+    </div>
+
+<div class="row">
+  <% @user.posts.each do |post| %>
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <%= image_tag(post.image, style: "height: 10px", style: "width:50%", display: "block;") %>
+                    <div class="caption">
+                        <h3 id="thumbnail-label"><%= link_to post.subject, post %></h3>
+                        <p>by <%= link_to post.user_name, user_path(post[:user_id]) %></p>
+                        <p>Posted <%= time_ago_in_words(post.created_at) %> ago</p>
+                    </div>
+                </div>
+            </div>
+    <% end %>    
+</div>
+
+<% end %>
+
+<p><%=link_to "Edit", edit_user_path(@user)%> your profile</p>
+
+<% else %>
+<div align="center"> 
+<div class="thumbnail">
+    <%= image_tag(check_avatar(@user), class:"avatar") %><br/><br/>
+</div>
+
+<p> Name: <%= @user.full_name %></p>
+<br>
+<p> Username: <%= @user.username%></p>
+<br>
+<p> Email address: <%= @user.email_address%></p>
+<br>
+<p> Number of posts: <%=@user.posts.count%></p>
+<br>
+<% if  %>
+    <%@user.posts.count > 0%>
+<p>Their posts:</p>
+<div class="row">
+  <% @user.posts.each do |post| %>
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <%= image_tag(post.image, style: "height: 10px", style: "width:50%", display: "block;") %>
+                    <div class="caption">
+                        <h3 id="thumbnail-label"><%= link_to post.subject, post %></h3>
+                        <p>by <%= link_to post.user_name, user_path(post[:user_id]) %></p>
+                        <p>Posted <%= time_ago_in_words(post.created_at) %> ago</p>
+                    </div>
+                </div>
+            </div>
+    <% end %>    
+</div>
+    
+<% end %>
+    
+ <%= link_to "Message me", new_conversation_path(@user[:user_id]) %>
+<% end %>

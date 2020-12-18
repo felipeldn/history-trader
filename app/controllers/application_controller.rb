@@ -20,11 +20,15 @@ class ApplicationController < ActionController::Base
     end
 
     def check_avatar(user)
-        if @current_user.avatar.nil?
-          return 'images/default-avatar.png'
-       else
-          return @current_user.avatar
-       end
-    end
-    
+        if user.fb_img
+            user.fb_img
+        elsif
+            user.avatar.attached?
+                user.avatar
+        else
+            'default-avatar'
+        end
+    end      
+
 end
+

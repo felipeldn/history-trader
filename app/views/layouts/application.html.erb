@@ -1,79 +1,106 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HistoryTrader</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="/"> <%= image_tag('History Trader 6.png', width: '85', height: '85', style: "border-radius: 50%;") %> </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+    <title>HistoryTrader</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>  
   </head>
 
-  <body>
-  <nav>
-  <ul class="nav">
-    <% if logged_in? %>
-  <li class="nav-item">
-    <p> <%= "#{@current_user.username} is logged in." %> <%= "Not #{@current_user.username}?"%> <%= link_to "Log out", logout_path, class:"nav-link active" %> </p>
-  <li class="nav-item">
-    <%= link_to "Inbox", conversations_path, class:"nav-link active" %>
-  <li class="nav-item">
-    <%= link_to "Homepage", feed_path, class:"nav-link active"%>
-  <li class="nav-item">
-     <%= link_to "My Posts", posts_path, class:"nav-link active"%>
-  </li>
-  <li class="nav-item">
-    <%= link_to "My Profile", user_path(session[:user_id]), class:"nav-link active"%>
-  </li>
-  <li class="nav-item">
-    <%= link_to "Create a Post", new_post_path, class:"nav-link active"%>
-  </li>
-  <li class="nav-item">
-    <%= link_to "Log out", logout_path, class:"nav-link active" %>
-    <% else %>
-    <%= link_to "Sign up", signup_path, class:"nav-link active" %>
-    </li>
-    <%= link_to "Log in", login_path, class:"nav-link active"%>
-    <%= link_to "auth/github" do %><%= image_tag('GitHub-Mark.png', width: '40', height: '40', class: 'img-circle') %> <%end%>
-    <%end%>
-</ul>
-    </nav>
-  <% if flash[:errors] %>
-    <ul class="errors">
-      <h2>Oops there's been an error</h2>
-      <% flash[:errors].each do |error| %>
-        <li><%= error %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  <% if flash[:notices] %>
-    <ul class="notices">
-      <% flash[:notices].each do |notice| %>
-        <li><%= notice %></li>
-      <% end %>
-    </ul>
-  <% end %>
-    <%= yield %>
-    <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '{your-app-id}',
-      cookie     : true,
-      xfbml      : true,
-      version    : '{api-version}'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
+<body>
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+  <% if logged_in?%>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto"> 
+          <li class="nav-item active">
+            <a class="nav-link"> <%= link_to "Home", welcome_path, class:"nav-link active" %></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link"> <%= link_to "New Post", new_post_path, class:"nav-link active" %></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link"> <%= link_to "Inbox(#{unread_messages_count})", conversations_path, class:"nav-link active" %></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link"> <%= link_to "My Profile", user_path(session[:user_id]), class:"nav-link active" %></a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="/search">
+            <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search"> 
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </li>
+        <ul class="navbar-nav mx-auto"> 
+          <li class="nav-item">
+             <%= "Not #{@current_user.username}?"%> <%= link_to "Sign out", logout_path, class:"nav-link active"%>
+          </li>
+        </ul>
+    </div>
+</nav>
+
+<% else %>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto"> 
+          <li class="nav-item active">
+            <a class="nav-link"> <%= link_to "Sign in", login_path, class:"nav-link active" %></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link"> <%= link_to "Sign up", signup_path, class:"nav-link active" %></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link"> <%= link_to "Sign in via Facebook", "auth/facebook", class:"nav-link active"%> </a>
+          </li>
+          <a class="navbar-brand" href="auth/facebook"> <%= image_tag('FBLogo.webp', width: '45', height: '45') %> </a>      
+          </ul>
+      </div>
+</nav>
+
+<% end %>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+
+  <% flash.each do |name, message| %>
+    <div class="alert alert-<%= name %>">
+      <%= message %>
+    </div>
+  <% end %>
+
+
+
+    <%= yield %>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
   </body>
+
 </html>
+
+<div class="fixed-bottom">
+<div class="footer-margin">
+  <footer class="card-footer bg-dark footer-font-style text-muted footer-position" align="center"><a href="https://www.instagram.com/warphotography/?hl=en"> <%= image_tag('ig-logo.png', width: '25', height: '25', class:'img-circle') %> </a>
+    <a> <%= link_to "Instagram", "https://www.instagram.com/warphotography/?hl=en" %> </a> 
+  </footer>
+  </div>
+</div>
+
+</div>
+  </div>
+
+

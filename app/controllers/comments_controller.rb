@@ -5,8 +5,22 @@ class CommentsController < ApplicationController
         @comment = @post.comments.create(comment_params)
         @comment.user_id = session[:user_id]
         @comment.post_id = @post.id
-        @comment.save
-        redirect_to post_path(@post)
+            # if @comment.body == !nil?
+                @comment.save
+                flash[:success] = "Comment successfully created."
+                redirect_to post_path(@post)
+            # else
+            #     flash[:notice] = "Comment can't be blank"
+            #     redirect_to post_path(@post)
+            # end
+    end
+
+    def destroy
+        @post = Post.find(params[:post_id])
+        @comment = @post.comments.find(params[:id])
+        @comment.destroy
+        flash[:warning] = "Comment successfully deleted."
+        redirect_to post_path(@post) 
     end
 
     private

@@ -1,0 +1,15 @@
+<h3> New Conversation </h3>
+
+<%= form_tag new_conversation_path, method: :post do %>
+    
+    <div>
+        <%= text_field_tag :subject, nil,  placeholder: "Subject" %>
+    </div>
+    <br/>
+    <div>
+        <%= text_area_tag :body, nil, placeholder: "Start your conversation" %>
+    </div>
+    <br/>
+    <%= submit_tag %>
+<% end %>
+

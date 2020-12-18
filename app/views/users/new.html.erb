@@ -1,31 +1,24 @@
 <h2> Create A New Account </h2>
 
-<%= form_for @user do |f| %>
+<%= bootstrap_form_for @user do |f| %>
 <p>
-    <%= f.label :username %>:<br/>
     <%= f.text_field :username %> 
 </p>
 <p>
-    <%= f.label :first_name %>:<br/>
     <%= f.text_field :first_name %>
 </p>
 <p>
-    <%= f.label :last_name %>:<br/>
     <%= f.text_field :last_name %>
 <p>
-    <%= f.label :avatar %>:<br/>
     <%= f.file_field :avatar %>
 </p> 
 <p>
-    <%= f.label :email_address %>:<br/>
     <%= f.text_field :email_address %>
 </p>
 <p>
-    <%= f.label :password %>:<br/>
     <%= f.password_field :password %>
 </p>
 <p>
-<%= f.label :password_confirmation %>:<br/>
 <%= f.password_field :password_confirmation %>
 </p> 
 <p>

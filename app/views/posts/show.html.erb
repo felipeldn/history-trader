@@ -1,19 +1,22 @@
 <% if logged_in? %>
     <div class="col-xs-1" align="center">
-    <h2> <%= @post.subject %></h2>
-        <%if @post.user.avatar%>
-            <%=image_tag(@post.user.avatar, style: "width:20%", style: "height:20%") %>
+    <%=image_tag(check_avatar(@post.user), class:"avatar")%>
+    <h6> By <%= link_to @post.user_name, user_path(@post[:user_id]) %> </h6>
+    <strong><h1> <%= @post.subject %></h1></strong>
+    <p> Posted <%= time_ago_in_words(@post.created_at) %> ago</p>
+        <% if  @post.user.id == session[:user_id]%>
+            <%= link_to "Edit post", edit_post_path(@post[:id]) %>
         <% end %>
-        <h3> By <%= link_to @post.user_name, user_path(@post[:user_id]) %> </h3>
     <div>
-    <%= link_to image_tag(@post.image, style: "width:100%", style: "height:100%"), posts_path(@post) %>
+    <%= image_tag(@post.image, style: "width:100%", style: "height:500px") %>
     </div>
+
     <div>
     <%= @post.caption %>
     </div>
     <br>
+    <h4><strong><%= @post.body %></strong></h4>
     <div>
-    <%= @post.body %>
     </div>
     <br>
         <% if %>
@@ -33,8 +36,14 @@
             <h3> Add a comment </h3>
             <%= render "comments/form" %>
         <% end %>
-    <%="Start a "%><%= link_to "conversation", new_conversation_path(@post[:user_id])%><%=" if you are interested in trading"%>    
+        <%= link_to 'Send a message', new_conversation_path(@post.user.id) %>
+<br/>    
+<% if @post.user.id == session[:user_id] %>
+    <%= link_to 'Delete Post',  post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
 
+<% else %>
 
+    <h3> Please login or create an account to view details about a post or send a message to its author </h3>
 
 <% end %>

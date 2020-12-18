@@ -1,17 +1,21 @@
 <h2> All Conversations </h2> 
 
 <% if %>
-    <% @current_user.receipts.count < 1 %>
-    <p> You haven't had any conversations yet </p>
+    <% @current_user.receipts.count == 0 %>
+    <p> You haven't had any conversations yet. </p>
 
 <% else %>
 
     <% @conversations.each do |conversation| %>
         <div>
-        <%= link_to conversation.subject, conversation_path(conversation) %>
-        </div>
+        <%= link_to conversation.subject, conversation_path(conversation) %> started by <%= link_to conversation.originator.username, user_path(conversation.originator) %>
+        <%= time_ago_in_words(conversation.created_at) %> ago <br/>
+
+        
+        <br>
     <% end %>
+</div>    
 
 <% end %>
-
+<br/>
 <%= link_to "New conversation", new_conversation_path %>

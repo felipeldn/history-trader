@@ -4,22 +4,29 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @user = User.find_by(username: params[:username])
-            if @user && @user.authenticate(params[:password])
+        if auth_hash = request.env["omniauth.auth"]           
+            oauth_email = request.env["omniauth.auth"]["info"]["email"]
+            @user = User.find_or_create_by_omniauth(auth_hash)
                 session[:user_id] = @user.id
-                redirect_to feed_path, notice: "Signed in successfully"
-            else
-                flash[:errors] = ["Invalid credentials"]
-                redirect_to login_path
-        end    
+                flash[:success] = "Signed in succesfully via Facebook."
+                redirect_to welcome_path
+        else
+            @user = User.find_by(username: params[:username])            
+                if @user && @user.authenticate(params[:password])
+                    session[:user_id] = @user.id 
+                    flash[:success] = "Signed in successfully."
+                    redirect_to welcome_path
+                else
+                    flash[:danger] = "Invalid credentials. Please try logging in again."
+                    redirect_to login_path
+                end
+        end
     end
 
     def destroy
         session.delete(:user_id)
-        redirect_to welcome_path, notice: "Signed out"
-        # session.delete(:user_id)
-        # # redirect_to signup_path
-        # redirect_back(fallback_location: signup_path)
+        flash[:danger] = "Successfully signed out."
+        redirect_to welcome_path
     end
     
 end

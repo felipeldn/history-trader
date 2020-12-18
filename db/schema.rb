@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_181604) do
+ActiveRecord::Schema.define(version: 2020_02_12_143942) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -114,6 +114,9 @@ ActiveRecord::Schema.define(version: 2020_01_18_181604) do
     t.string "email_address"
     t.string "uid"
     t.string "provider"
+    t.string "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.string "fb_img"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

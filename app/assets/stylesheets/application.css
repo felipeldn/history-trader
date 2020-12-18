@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+html, body {  
+    font-family: 'Courier New', Courier, monospace;
+    color: SlateGray;
+}
+
+nav {
+    color: Green;
+    max-height:75px   
+}
+
+.footer-margin p {
+    color: White;
+    font-size: 55%;  
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+
