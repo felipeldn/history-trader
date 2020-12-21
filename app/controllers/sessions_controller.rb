@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
                 session[:user_id] = @user.id
                 flash[:success] = "Signed in succesfully via Facebook."
                 redirect_to welcome_path
+                @user.fb_user = true
         else
             @user = User.find_by(username: params[:username])            
                 if @user && @user.authenticate(params[:password])

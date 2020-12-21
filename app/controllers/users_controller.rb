@@ -35,6 +35,8 @@ class UsersController < ApplicationController
     end
 
     def destroy
+        # @current_user_posts = @current_user.posts
+        # @current_user_posts.destroy
         @current_user.destroy
         session.destroy
         flash[:danger] = "User account successfully deleted."

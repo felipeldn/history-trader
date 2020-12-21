@@ -11,6 +11,8 @@ class Post < ApplicationRecord
     validates :image, presence: true, blob: { content_type: :image }
 
 
+    scope :fb_users, -> { where(self.user_id = session[:user_id]) }
+
     # def image_presence
     #     # errors.add(:image, "can't be blank") unless image.attached?
     #     unless image.attached?
