@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a blog application which also allows for user to user messaging in order to facilitate possible item trades. Users can inbox other users should they be interested in any items that have been posted.
 
-Things you may want to cover:
+Users can also:
 
-* Ruby version
+Create a post
+Edit a post
+Delete a post
 
-* System dependencies
+Edit user account
+Delete user account
 
-* Configuration
+Sign in via Facebook
 
-* Database creation
+Send/receive private messages
 
-* Database initialization
+Create comments on posts
+Delete comments
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+Search for any particular post
 
 * ...
