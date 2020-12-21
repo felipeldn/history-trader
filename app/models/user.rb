@@ -1,7 +1,8 @@
 class User < ApplicationRecord
     
-    has_many :posts, dependent: :destroy
-    has_many :comments, dependent: :destroy
+    has_many :posts
+    has_many :comments, through: :posts
+    has_many :messages, through: :conversations
     has_one_attached :avatar
     has_secure_password
     acts_as_messageable

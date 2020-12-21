@@ -62,5 +62,4 @@ gem 'omniauth'
 gem 'bootstrap', '~> 4.3.1'
 gem "bootstrap_form"
 gem 'omniauth-facebook'
-gem 'chosen-rails'
 
