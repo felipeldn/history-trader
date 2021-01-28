@@ -10,7 +10,7 @@ class Comment < ApplicationRecord
 
     
     # via SQL Query
-    # SELECT post_id, count(post_id) as count FROM "likes" GROUP BY post_id ORDER BY count desc LIMIT 10
+    # SELECT post_id, count(post_id) as count FROM "comments" GROUP BY post_id ORDER BY count desc LIMIT 10
 
 
     # via Console
