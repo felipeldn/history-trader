@@ -13,12 +13,8 @@ class Post < ApplicationRecord
 
     scope :fb_users, -> { where(self.user_id = session[:user_id]) }
 
-    # def image_presence
-    #     # errors.add(:image, "can't be blank") unless image.attached?
-    #     unless image.attached?
-    #         flash[:danger] = "Please attach an image in order to create a post."
-    #     end
-    # end
+    # scope :popular, -> { select('post_id, count(post_id) as count') }
+
 
     def user_name
         "#{self.user.username}"

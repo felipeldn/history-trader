@@ -15,11 +15,8 @@ class User < ApplicationRecord
     validates :password, length: {minimum: 7}
     validates :avatar, blob: { content_type: :image }
 
-    scope :fb_users, -> { where(fb_user: true) }
+    # scope :fb_users, -> { where(fb_user: true) }
     
-    def self.latest_posts
-        order('published_at desc').first
-    end
 
     def mailboxer_email(object)
         return self.email_address
