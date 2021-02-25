@@ -7,7 +7,8 @@ class PostsController < ApplicationController
     end
 
     def search
-       @posts = Post.where("subject LIKE ?", "%" + params[:q] + "%") 
+        # @posts = Post.where("subject LIKE ?", "%" + params[:q] + "%")
+        @posts = Post.search(params[:q])
     end
 
     def show
@@ -16,9 +17,12 @@ class PostsController < ApplicationController
 
     def new
         @post = Post.new
+        @category = Category.find_by(id: params[:category_id])
+        @post.category = @category
     end
 
     def create
+        # @post = @current_user.posts.build(post_params)
         @post = Post.new(post_params)
         @post.user_id = @current_user.id
         @post.save
@@ -54,7 +58,8 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:subject, :body, :caption, :image, :user_id)
+        params.require(:post).permit(:subject, :body, :caption, :image, :user_id, :category_id)
+        # :category_id
     end
 
 end

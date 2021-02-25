@@ -1,21 +1,23 @@
 class User < ApplicationRecord
     
     has_many :posts
-    has_many :comments, through: :posts
+    has_many :comments
     has_many :messages, through: :conversations
     has_one_attached :avatar
     has_secure_password
     acts_as_messageable
     attr_accessor :remove_avatar
 
+    has_many :commented_posts, -> { distinct }, through: :comments, source: :post
+
     validates :first_name, length: {minimum: 2, maximum: 20}
     validates :email_address, format: { with: URI::MailTo::EMAIL_REGEXP } 
     validates :email_address, uniqueness: {message: "already exists. Please use another email address."}
     validates :username, uniqueness: {message: "already exists. Please choose another name."}, length: {minimum: 5, maximum: 20}  
     validates :password, length: {minimum: 7}
-    validates :avatar, blob: { content_type: :image }
+    validates :avatar, blob: {content_type: :image}
 
-    # scope :fb_users, -> { where(fb_user: true) }
+    scope :fb_users, -> { where(provider: "facebook") }
     
 
     def mailboxer_email(object)

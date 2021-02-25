@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # resources :categories
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # Rails.application.routes.default_url_options[:host] = "XXX"
@@ -7,13 +8,20 @@ Rails.application.routes.draw do
 
   resources :users
   
+  resources :categories do
+    resources :posts
+    # end
+  end
+  
+  resources :conversations do
+    resources :messages
+  end
+
   resources :posts do
     resources :comments
   end
 
-  resources :conversations do
-    resources :messages
-  end
+  # Remember to use rails/info/routes!!!!!!
 
   get '/', to: 'home#welcome', as: 'welcome'
   get '/signup', to: 'users#new', as: :signup

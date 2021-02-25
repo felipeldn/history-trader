@@ -8,6 +8,7 @@
             <%= link_to "Edit post", edit_post_path(@post[:id]) %>
         <% end %>
     <div>
+    <p> Category: <%= link_to @post.category.name, category_path(@post[:category_id]) %> <p>
     <%= image_tag(@post.image, style: "width:100%", style: "height:500px") %>
     </div>
 

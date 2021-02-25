@@ -1,0 +1,23 @@
+<p> Name: <%= @category.name %> </p>
+
+<p>Posts in this category:</p>
+
+    </div>
+
+<div class="row">
+  <% @category.posts.each do |post| %>
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <%= image_tag(post.image, style: "height: 5px", style: "width:30%", display: "block;") %>
+                    <div class="caption">
+                        <h3 id="thumbnail-label"><%= link_to post.subject, post %></h3>
+                        <p>by <%= link_to post.user_name, user_path(post[:user_id]) %></p>
+                        <p>Posted <%= time_ago_in_words(post.created_at) %> ago</p>
+                    </div>
+                </div>
+            </div>
+    <% end %>  
+    
+    <%= link_to 'New Post', new_category_post_path(@category) %>
+
+</div>

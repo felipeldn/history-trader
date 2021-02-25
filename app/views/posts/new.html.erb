@@ -22,6 +22,9 @@
         <%= f.text_field :caption %>
     </p>
     <p>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
+    </p>
+    <p>
         <%= f.text_area :body %>
     </p>
     <p>
