@@ -15,19 +15,21 @@ Visit your https//:localhost3000
 
 Users can:
 
-Create a post
-Edit a post
-Delete a post
+Create a post,
+Edit a post,
+Delete a post,
+Comment on a post, 
+Send inbox another user,    
 
-Edit user account
-Delete user account
+Edit user account,
+Delete user account,
 
-Sign in via Facebook
+Sign in via Facebook,
 
-Send/receive private messages
+Send/receive private messages,
 
-Create comments on posts
-Delete comments
+Create comments on posts,
+Delete comments,
 
 Search for any particular post
 
