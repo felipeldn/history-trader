@@ -2,7 +2,7 @@
 
 This is a blog application which also allows for user to user messaging in order to facilitate possible item trades. Users can inbox other users should they be interested in any items that have been posted.
 
-![](/app/assets/images/Screenshot%2021-02-25%at%19.41.17.png?raw=true "Home Page")
+![](/app/assets/images/Screenshot%202021-02-25%20at%2019.41.17.png?raw=true "Home Page")
 
 Installation: From your command line:
 
